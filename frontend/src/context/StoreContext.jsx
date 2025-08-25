@@ -32,6 +32,7 @@ const StoreContextProvider=({children})=>{
       setUser(null);
       localStorage.removeItem("user");
       localStorage.removeItem("token");
+      toast.success("You have logged out successfully!");
    }
    const contextValue={blogData,user,loginUser,logoutUser};
    return (
