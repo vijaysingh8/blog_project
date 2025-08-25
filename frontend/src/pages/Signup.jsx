@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
-import { Link, useNavigate} from 'react-router-dom'
+import React, { useState,useContext } from 'react'
+import { Link, useNavigate} from 'react-router-dom';
 import { toast } from 'react-toastify';
-import axios from 'axios'
+import axios from 'axios';
+import { StoreContext } from '../context/StoreContext';
 
 const Signup = () => {
   const [formData,setFormData]=useState({
@@ -12,6 +13,7 @@ const Signup = () => {
   });
   const navigate=useNavigate();
   const [loading,setLoading]=useState(false);
+   const {loginUser}=useContext(StoreContext);
   const onChangeHandler=(e)=>{
     console.log(e.target.value);
       setFormData({...formData,[e.target.name]:e.target.value});
@@ -34,6 +36,8 @@ const Signup = () => {
         },
       });
       if(res.data.success){
+         const {user,token}=res.data;
+       loginUser(user,token);
         toast.success(res.data.message);
         navigate("/");
       }
