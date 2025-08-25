@@ -28,7 +28,7 @@ const Signup = () => {
       data.append("password",formData.password);
       data.append("image",formData.image);
       setLoading(true);
-      const res=await axios.post("http://localhost:4000/user/register",data,{
+      const res=await axios.post(`${import.meta.env.VITE_BACKEND_URL}/user/register`,data,{
         headers:{
           "Content-Type":"multipart/formData",
         },
