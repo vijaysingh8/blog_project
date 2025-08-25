@@ -30,7 +30,7 @@ function Dashboard() {
     data.append('description',formData.description);
     data.append('image',formData.image);
     try {
-      const res=await axios.post('http://localhost:4000/blog/create',formData,{
+      const res=await axios.post(`${import.meta.env.VITE_BACKEND_URL}/blog/create`,formData,{
         headers:{
            'Content-Type':'multipart/form-data',
            Authorization:`Bearer ${token}`
@@ -50,7 +50,7 @@ function Dashboard() {
   useEffect(()=>{
     const allBlogs=async()=>{
    try {
-    const res=await axios.get('http://localhost:4000/blog/all',{
+    const res=await axios.get(`${import.meta.env.VITE_BACKEND_URL}/blog/all`,{
       headers:{
         Authorization:`Bearer ${token}`,
       },
@@ -65,7 +65,7 @@ function Dashboard() {
   const removeBlog = async (blogId) => {
     try {
       const res = await axios.delete(
-        `http://localhost:4000/blog/delete/${blogId}`,
+        `${import.meta.env.VITE_BACKEND_URL}/blog/delete/${blogId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -131,13 +131,13 @@ function Dashboard() {
                   {blogs.map((blog) => (
                     <tr key={blog._id} className="text-center">
                       {/* <td className="border px-4 py-2">{blog.title}</td> */}
-                      <td className="border px-4 py-2"> <Link to={`/blog/${blog._id}`} 
+                      <td className="border px-4 py-2"> <Link to={`${import.meta.env.VITE_BACKEND_URL}/blog/${blog._id}`} 
                        className="text-blue-600 hover:underline" >
                                 {blog.title}</Link> </td>
                       <td className="border px-4 py-2">{blog.category}</td>
                       <td className="border px-4 py-2">
                         <img
-                          src={`http://localhost:4000/images/${blog.image}`}
+                          src={`${import.meta.env.VITE_BACKEND_URL}/images/${blog.image}`}
                           alt={blog.title}
                           className="w-16 h-16 object-cover mx-auto"
                         />
