@@ -55,7 +55,7 @@ function Dashboard() {
         Authorization:`Bearer ${token}`,
       },
     });
-    setBlogs(res.data);
+    setBlogs(res.data.blogs);
    } catch (error) {
     console.log("error",error);
    }
