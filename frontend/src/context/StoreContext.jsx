@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-
+import { toast } from "react-toastify";
 import axios from "axios";
 export const StoreContext=createContext(null);
 
@@ -15,7 +15,7 @@ const StoreContextProvider=({children})=>{
    useEffect(()=>{
      const allBlogs=async()=>{
          try {
-            const res = await axios.get("http://localhost:4000/blog/all");
+            const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/blog/all`);
             setBlogData(res.data.blogs);
          } catch (error) {
             console.log("error in all blogs api",error);
@@ -29,9 +29,13 @@ const StoreContextProvider=({children})=>{
       localStorage.setItem("token",token);
    };
    const logoutUser=()=>{
+
       setUser(null);
       localStorage.removeItem("user");
       localStorage.removeItem("token");
+       toast.success("You have logged out successfully!");
+      
+
    }
    const contextValue={blogData,user,loginUser,logoutUser};
    return (

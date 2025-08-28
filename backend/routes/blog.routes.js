@@ -1,5 +1,5 @@
 import express from 'express';
-import { upload } from '../middlewares/multer.js';
+import  upload  from '../middlewares/multer.js';
 import { allBlogs, createBlog, deleteBlog, singleBlog, userBlogs } from '../controllers/blog.controller.js';
 import { isAuthenticated } from '../middlewares/isAuthenticated.js';
 const router=express.Router();

@@ -20,7 +20,7 @@ const Login = () => {
   try {
     setLoading(true);
      const res = await axios.post(
-        "http://localhost:4000/user/login",
+        `${import.meta.env.VITE_BACKEND_URL}/user/login`,
         formData,
         {
           headers: {
@@ -51,7 +51,9 @@ const Login = () => {
            <input name='email' value={formData.email} onChange={onChangeHandler} type="email" placeholder='Your email' className='w-full p-2 border border-gray-300 rounded outline-none' required/>
             <input name='password' value={formData.password} onChange={onChangeHandler} type="password" placeholder='Your password' className='w-full p-2 border border-gray-300 rounded outline-none' required />
             
-            <button className='bg-orange-600 text-white px-6 py-2 w-full cursor-pointer'>Signin</button>
+            <button className='bg-orange-500 text-white px-6 py-2 w-full cursor-pointer hover:bg-orange-600 ransition-colors duration-300 
+  active:scale-95 active:bg-orange-700 transform'>Signin</button>
+           
         </form>
         <p className='text-center mt-4 '> Don't have an account? <Link to={"/register"} className='text-orange-600 cursor-pointer'>Register Here</Link></p>
       </div>
